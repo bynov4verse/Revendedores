@@ -106,6 +106,41 @@ select option{background:#1a1200;color:var(--text)}
 .btn-reset{display:block;width:100%;padding:11px;background:transparent;border:1px dashed rgba(234,179,8,.25);border-radius:10px;color:var(--text-dim);font-family:var(--mono);font-size:11px;cursor:pointer;text-align:center;margin-top:.6rem;letter-spacing:.06em;transition:all .18s}
 .btn-reset:hover{border-color:rgba(234,179,8,.5);color:var(--gold);background:rgba(180,83,9,.06)}
 .consulta{background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.18);border-radius:9px;padding:.75rem 1rem;font-size:13px;color:var(--gold);text-align:center;margin-top:.5rem;display:none;line-height:1.55}
+
+/* ── REFERIDOS ── */
+.ref-card{background:linear-gradient(135deg,rgba(180,83,9,.15) 0%,rgba(120,53,15,.08) 100%);border:1px solid rgba(234,179,8,.3);border-radius:14px;padding:1.25rem;margin-bottom:.8rem;position:relative;overflow:hidden}
+.ref-card::before{content:"";position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(251,191,36,.1),transparent 70%);pointer-events:none}
+.ref-title{font-family:var(--mono);font-size:11px;color:var(--gold-bright);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem}
+.ref-code-wrap{display:flex;align-items:center;gap:.6rem;margin:.6rem 0 .3rem}
+.ref-code{font-family:var(--mono);font-size:22px;font-weight:700;color:#fff;letter-spacing:.12em;text-shadow:0 0 20px rgba(251,191,36,.6);flex:1}
+.ref-copy-btn{border:1px solid rgba(234,179,8,.4);border-radius:8px;background:rgba(180,83,9,.15);color:var(--gold);font-family:var(--mono);font-size:10px;padding:6px 10px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.ref-copy-btn:hover{background:rgba(180,83,9,.3);border-color:var(--border-glow)}
+.ref-copy-btn.copied{color:var(--success);border-color:rgba(52,211,153,.4);background:rgba(52,211,153,.08)}
+.ref-hint{font-size:11px;color:var(--text-dim);line-height:1.55;font-family:var(--mono)}
+.ref-points-info{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+.ref-pill{font-family:var(--mono);font-size:9px;padding:4px 9px;border-radius:5px;border:1px solid rgba(234,179,8,.2);color:var(--text-muted);background:rgba(180,83,9,.06);letter-spacing:.04em;line-height:1.4}
+.ref-pill.green{border-color:rgba(52,211,153,.3);color:var(--success);background:rgba(52,211,153,.07)}
+.ref-input-section{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.35rem 1.25rem 1.15rem;margin-bottom:.8rem}
+.ref-sub{font-size:12px;color:var(--text-muted);margin-bottom:.8rem;line-height:1.5}
+.ref-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.55rem}
+.ref-row input{margin-bottom:0}
+.ref-code-input-wrap{position:relative}
+.ref-code-input-wrap input{padding-right:2.5rem;text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono)}
+.ref-check{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;pointer-events:none}
+.ref-valid{color:var(--success)}
+.ref-pts-preview{display:none;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.22);border-radius:8px;padding:.6rem .9rem;font-family:var(--mono);font-size:10px;color:var(--success);letter-spacing:.04em;margin-top:.3rem;line-height:1.6}
+/* ── FAQ ── */
+.faq-section{margin-bottom:.8rem}
+.faq-title{font-family:var(--mono);font-size:11px;color:var(--gold-bright);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem}
+.faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:.45rem;overflow:hidden;transition:border-color .18s;background:var(--bg2)}
+.faq-item.open{border-color:rgba(234,179,8,.45)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;font-size:13px;font-weight:500;color:var(--text);gap:.5rem;user-select:none}
+.faq-q:hover{color:var(--gold-bright)}
+.faq-arrow{font-family:var(--mono);font-size:12px;color:var(--gold-dim);transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s;font-size:13px;color:var(--text-muted);line-height:1.65;padding:0 1rem}
+.faq-item.open .faq-a{max-height:280px;padding:.1rem 1rem .9rem}
+.faq-alert-box{background:rgba(234,179,8,.07);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:.5rem .75rem;margin-top:.4rem;font-size:12px;color:var(--gold);line-height:1.5}
 .deco-line{display:flex;align-items:center;gap:.75rem;margin:1.6rem 0 .5rem;opacity:.35}
 .deco-line::before,.deco-line::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
 .deco-line span{font-family:var(--mono);font-size:9px;color:var(--gold-dim);letter-spacing:.15em;white-space:nowrap}
@@ -135,8 +170,9 @@ select option{background:#1a1200;color:var(--text)}
   <div class="step">
     <div class="step-label">[ 01 ] identificación</div>
     <h2>Tus datos</h2>
-    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="text" id="nombre" placeholder="Nombre" oninput="actualizarCodigoReferido()">
     <input type="text" id="apellido" placeholder="Apellido">
+    <input type="text" id="emprendimiento" placeholder="Nombre de emprendimiento">
   </div>
 
   <!-- PASO 2 -->
@@ -230,6 +266,80 @@ select option{background:#1a1200;color:var(--text)}
     <button class="btn-reset" onclick="resetForm()">↺ nuevo pedido</button>
   </div>
 
+  <!-- REFERIDOS -->
+  <div class="ref-card">
+    <div class="ref-title">✦ tu código de referido</div>
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:.5rem;line-height:1.5">Comparte tu código con otros revendedores. Cada vez que alguien compre usando tu código acumulas puntos canjeables en tus próximas compras.</p>
+    <div class="ref-code-wrap">
+      <span class="ref-code" id="ref-code-display">——</span>
+      <button class="ref-copy-btn" id="ref-copy-btn" onclick="copiarCodigo()">Copiar</button>
+    </div>
+    <p class="ref-hint" id="ref-hint">// ingresa tu nombre arriba para generar tu código</p>
+    <div class="ref-points-info">
+      <span class="ref-pill green">5 pts por cada $1 de tu referido</span>
+      <span class="ref-pill">100 pts = $1 de descuento</span>
+      <span class="ref-pill">acumulable · canjeable en cualquier compra</span>
+    </div>
+  </div>
+
+  <div class="ref-input-section">
+    <div class="step-label">[ ref ] ¿te recomendaron?</div>
+    <h2 style="color:var(--gold-bright);font-size:14px;font-weight:600;margin-bottom:.5rem">Datos de quien te refirió</h2>
+    <p class="ref-sub">Si otro revendedor te recomendó Novaverse, ingresa su código y datos para que reciba sus puntos.</p>
+    <label style="font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.3rem">código de referido</label>
+    <div class="ref-code-input-wrap" style="margin-bottom:.55rem">
+      <input type="text" id="ref-codigo-input" placeholder="EJ: ANA-3821" oninput="validarCodigo(this)" maxlength="10" style="margin-bottom:0">
+      <span class="ref-check" id="ref-check-icon"></span>
+    </div>
+    <div class="ref-pts-preview" id="ref-pts-preview"></div>
+    <div style="margin-top:.8rem">
+      <label style="font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.4rem">datos de tu referidor</label>
+      <div class="ref-row">
+        <input type="text" id="ref-nombre" placeholder="Nombre" style="margin-bottom:0">
+        <input type="text" id="ref-apellido" placeholder="Apellido" style="margin-bottom:0">
+      </div>
+      <input type="text" id="ref-telefono" placeholder="Teléfono (ej: +58412...)" style="margin-bottom:0">
+    </div>
+  </div>
+
+  <!-- FAQ REVENDEDORES -->
+  <div class="faq-section">
+    <div class="faq-title">✦ preguntas frecuentes · revendedores</div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Cómo recibo el servicio después de pagar? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Las credenciales o activaciones se entregan por WhatsApp en un plazo de 1 a 24 horas tras confirmar el pago. La mayoría se procesa en minutos.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Qué pasa si hay una barrida o caída del servicio? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">En caso de barrida o falla imputable al proveedor, se realizan reposiciones en un plazo de <strong>12 a 72 horas máximo</strong>. No aplica para fallas por mal uso del servicio.
+        <div class="faq-alert-box">⏱ Reposiciones: 12 a 72 horas máximo tras reportar el incidente por WhatsApp.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Hay descuento por volumen en Netflix? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. A partir de 12 unidades en Netflix Perfil Extra y Cuenta Completa aplica rebaja de 10% automáticamente. Se confirma al procesar el pedido.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Los precios incluyen soporte post-venta? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. Todos los precios mayoristas incluyen soporte por fallas del proveedor durante el período contratado. El soporte se gestiona exclusivamente por WhatsApp.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Cómo funcionan los puntos de referido? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Comparte tu código con otros revendedores. Por cada $1 que gasten usando tu código, acumulas 5 puntos. Con 100 puntos obtienes $1 de descuento, canjeable en cualquier compra o renovación.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Qué métodos de pago aceptan? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Aceptamos Bs vía Pago Móvil, Binance Pay, Zinli, Zelle y Wally. En el canal de revendedores no aplica descuento adicional por método de pago — todos tienen el mismo precio mayorista.</div>
+    </div>
+
+  </div>
+
   <div class="deco-line"><span>@novaverse_ve · revendedores</span></div>
 </div>
 
@@ -249,22 +359,18 @@ function cargarTasas(){
     const old = document.getElementById("jsonp-tasas");
     if(old) old.remove();
     if(data && data.ok){
-      TASA_BCV = parseFloat(data.bcv) || TASA_BCV;
       TASA_P2P = parseFloat(data.p2p) || TASA_P2P;
       const vivo = data.fuente === "live";
       if(indicador){
-        indicador.innerHTML = `<span class="tasa-dot" style="background:${vivo?"var(--success)":"var(--gold)"};box-shadow:0 0 6px ${vivo?"var(--success)":"var(--gold)"}"></span>BCV Bs.${TASA_BCV.toFixed(2)} &nbsp;·&nbsp; P2P Bs.${TASA_P2P.toFixed(2)} &nbsp;·&nbsp; ${vivo?"en vivo":"última conocida"}`;
+        const dot = vivo ? "var(--success)" : "var(--gold)";
+        const label = vivo ? "en vivo" : "\u00faltima conocida";
+        indicador.innerHTML = "<span class=\"tasa-dot\" style=\"background:"+dot+";box-shadow:0 0 6px "+dot+"\"></span>USDT P2P Bs."+TASA_P2P.toFixed(2)+" &nbsp;\u00b7&nbsp; "+label;
         if(vivo) indicador.style.cssText += ";background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.3);color:var(--success)";
       }
     } else {
-      if(indicador) indicador.innerHTML = `<span class="tasa-dot"></span>BCV Bs.${TASA_BCV.toFixed(2)} &nbsp;·&nbsp; P2P Bs.${TASA_P2P.toFixed(2)} &nbsp;·&nbsp; última conocida`;
+      if(indicador) indicador.innerHTML = "<span class=\"tasa-dot\"></span>USDT P2P Bs."+TASA_P2P.toFixed(2)+" &nbsp;\u00b7&nbsp; \u00faltima conocida";
     }
   };
-  const timeout = setTimeout(()=>{
-    const old = document.getElementById("jsonp-tasas");
-    if(old) old.remove();
-    if(indicador) indicador.innerHTML = `<span class="tasa-dot"></span>BCV Bs.${TASA_BCV.toFixed(2)} &nbsp;·&nbsp; P2P Bs.${TASA_P2P.toFixed(2)} &nbsp;·&nbsp; última conocida`;
-  }, 8000);
   window._tasasCallback = (function(fn){ return function(d){ clearTimeout(timeout); fn(d); }; })(window._tasasCallback);
   const s = document.createElement("script");
   s.id = "jsonp-tasas";
@@ -462,12 +568,19 @@ function calcBs(){
 
 // ── WHATSAPP ───────────────────────────────────────────────────────
 function enviarWA(){
-  const nombre   = document.getElementById("nombre").value.trim();
-  const apellido = document.getElementById("apellido").value.trim();
+  const nombre         = document.getElementById("nombre").value.trim();
+  const apellido       = document.getElementById("apellido").value.trim();
+  const emprendimiento = document.getElementById("emprendimiento").value.trim();
   if(!nombre||!apellido){alert("Por favor ingresa tu nombre y apellido.");return}
   if(!pagoSel){alert("Por favor selecciona un metodo de pago.");return}
   const svc = document.getElementById("servicio").value;
   if(!svc){alert("Por favor selecciona un servicio.");return}
+
+  const refCodigo   = document.getElementById("ref-codigo-input").value.trim();
+  const refNombre   = document.getElementById("ref-nombre").value.trim();
+  const refApellido = document.getElementById("ref-apellido").value.trim();
+  const refTelefono = document.getElementById("ref-telefono").value.trim();
+  const refValido   = /^[A-Z]{3}-\d{4}$/.test(refCodigo);
 
   const SEP   = "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501";
   const fecha = new Date().toLocaleDateString("es-VE",{day:"2-digit",month:"2-digit",year:"numeric"});
@@ -478,7 +591,7 @@ function enviarWA(){
       "\uD83C\uDF0C *NOVAVERSE \u00b7 REVENDEDORES \u2014 Consulta*",
       SEP,
       "\uD83D\uDCC5 *Fecha:* "+fecha,
-      "\uD83D\uDC64 *Revendedor:* "+nombre+" "+apellido,
+      "\uD83D\uDC64 *Revendedor:* "+nombre+" "+apellido+(emprendimiento?" | "+emprendimiento:""),
       SEP,
       "\uD83C\uDFAE *Categoria:* Juegos \u00b7 Recargas \u00b7 Gift Cards",
       "\uD83D\uDCB3 *Metodo de pago:* "+pagoSel,
@@ -503,7 +616,7 @@ function enviarWA(){
       "\uD83C\uDF0C *NOVAVERSE \u00b7 REVENDEDORES \u2014 Pedido*",
       SEP,
       "\uD83D\uDCC5 *Fecha:* "+fecha,
-      "\uD83D\uDC64 *Revendedor:* "+nombre+" "+apellido,
+      "\uD83D\uDC64 *Revendedor:* "+nombre+" "+apellido+(emprendimiento?" | "+emprendimiento:""),
       SEP,
       "\uD83D\uDCFA *Servicio:* "+svc,
       "\uD83D\uDCCB *Opcion:* "+cat,
@@ -518,6 +631,16 @@ function enviarWA(){
       SEP,
       "\u2705 Quedo en espera para proceder. Gracias!"
     ];
+  }
+
+  // Agregar referido si existe
+  if(refValido && refNombre){
+    const pts = calcularPuntosReferido();
+    partes.push(SEP);
+    partes.push("\uD83D\uDD17 *Referido por:* "+refNombre+" "+refApellido);
+    partes.push("\uD83D\uDCDE *Tel. referidor:* "+(refTelefono||"no indicado"));
+    partes.push("\uD83C\uDFF7\uFE0F *C\u00f3digo:* "+refCodigo);
+    partes.push("\u2B50 *Puntos a acreditar:* "+pts+" pts");
   }
 
   const msg = partes.filter(Boolean).join("\n");
@@ -543,7 +666,42 @@ function resetForm(){
 }
 
 // ── INIT ───────────────────────────────────────────────────────────
+
+function generarCodigo(nombre){
+  if(!nombre||nombre.length<2)return null;
+  const base=nombre.toUpperCase().replace(/[^A-Z]/g,"").substring(0,3).padEnd(3,"X");
+  let hash=0;for(let i=0;i<nombre.length;i++)hash=(hash*31+nombre.charCodeAt(i))&0xffff;
+  return base+"-"+(1000+(hash%9000));
+}
+function actualizarCodigoReferido(){
+  const nombre=document.getElementById("nombre").value.trim();
+  const code=generarCodigo(nombre);
+  const d=document.getElementById("ref-code-display");
+  const h=document.getElementById("ref-hint");
+  if(code){d.textContent=code;if(h)h.textContent="// copia y comparte con otros revendedores";}
+  else{d.textContent="--";if(h)h.textContent="// ingresa tu nombre para generar tu codigo";}
+  actualizarPtsPreview();
+}
+function actualizarPtsPreview(){
+  const inp=document.getElementById("ref-codigo-input");
+  const prev=document.getElementById("ref-pts-preview");
+  if(!inp||!prev)return;
+  const val=inp.value.trim();
+  const ok=/^[A-Z]{3}-[0-9]{4}$/.test(val);
+  if(!ok){prev.style.display="none";return;}
+  const pts=calcularPuntosReferido();
+  prev.style.display="block";
+  prev.innerHTML=pts>0?"Codigo valido - referidor recibira <strong>"+pts+" pts</strong> (~$"+(pts/100).toFixed(2)+")":"Codigo valido - puntos segun total";
+}
+
 cargarTasas();
+actualizarCodigoReferido();
+
+function toggleFaq(el){
+  const isOpen=el.classList.contains("open");
+  document.querySelectorAll(".faq-item.open").forEach(e=>e.classList.remove("open"));
+  if(!isOpen)el.classList.add("open");
+}
 </script>
 </body>
 </html>
