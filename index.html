@@ -347,7 +347,7 @@ select option{background:#1a1200;color:var(--text)}
 // ── LOGO cargado via atributo HTML ────────────────────────────────
 
 // ── APPS SCRIPT ────────────────────────────────────────────────────
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx3deWsX0aN3bPGnuA5XNRzk4f7GH_KjDmnfLPepiDT7pZW7vlCtfK7TDLMfqw0SbFvlw/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzeJkT_B6PnVU98E8ri3iR5aAhDZO60ENbzC6lr2VjmRe66behdqQbtyycEK2_lOGAL2Q/exec";
 
 // ── TASAS ──────────────────────────────────────────────────────────
 let TASA_BCV = 468.51;
@@ -355,27 +355,38 @@ let TASA_P2P = 665.73;
 
 function cargarTasas(){
   const indicador = document.getElementById("tasa-live");
+
+  function mostrarTasa(vivo){
+    if(!indicador) return;
+    const dot = vivo ? "var(--success)" : "var(--gold)";
+    const label = vivo ? "en vivo" : "\u00faltima conocida";
+    indicador.innerHTML = "<span class=\"tasa-dot\" style=\"background:"+dot+";box-shadow:0 0 6px "+dot+"\"></span>USDT P2P Bs."+TASA_P2P.toFixed(2)+" &nbsp;\u00b7&nbsp; "+label;
+    if(vivo) indicador.style.cssText += ";background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.3);color:var(--success)";
+  }
+
+  // Timeout por si el script no responde
+  const timeout = setTimeout(function(){
+    const old = document.getElementById("jsonp-tasas");
+    if(old) old.remove();
+    mostrarTasa(false);
+  }, 8000);
+
   window._tasasCallback = function(data){
+    clearTimeout(timeout);
     const old = document.getElementById("jsonp-tasas");
     if(old) old.remove();
     if(data && data.ok){
       TASA_P2P = parseFloat(data.p2p) || TASA_P2P;
-      const vivo = data.fuente === "live";
-      if(indicador){
-        const dot = vivo ? "var(--success)" : "var(--gold)";
-        const label = vivo ? "en vivo" : "\u00faltima conocida";
-        indicador.innerHTML = "<span class=\"tasa-dot\" style=\"background:"+dot+";box-shadow:0 0 6px "+dot+"\"></span>USDT P2P Bs."+TASA_P2P.toFixed(2)+" &nbsp;\u00b7&nbsp; "+label;
-        if(vivo) indicador.style.cssText += ";background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.3);color:var(--success)";
-      }
+      mostrarTasa(data.fuente === "live");
     } else {
-      if(indicador) indicador.innerHTML = "<span class=\"tasa-dot\"></span>USDT P2P Bs."+TASA_P2P.toFixed(2)+" &nbsp;\u00b7&nbsp; \u00faltima conocida";
+      mostrarTasa(false);
     }
   };
-  window._tasasCallback = (function(fn){ return function(d){ clearTimeout(timeout); fn(d); }; })(window._tasasCallback);
-  const s = document.createElement("script");
-  s.id = "jsonp-tasas";
-  s.src = APPS_SCRIPT_URL + "?action=tasas&callback=_tasasCallback";
-  document.head.appendChild(s);
+
+  const sc = document.createElement("script");
+  sc.id  = "jsonp-tasas";
+  sc.src = APPS_SCRIPT_URL + "?action=tasas&callback=_tasasCallback";
+  document.head.appendChild(sc);
 }
 
 // ── PRECIOS EN USDT ────────────────────────────────────────────────
