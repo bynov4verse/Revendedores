@@ -682,6 +682,11 @@ function actualizarCodigoReferido(){
   else{d.textContent="--";if(h)h.textContent="// ingresa tu nombre para generar tu codigo";}
   actualizarPtsPreview();
 }
+function calcularPuntosReferido(){
+  const totalStr=document.getElementById("r-total")?document.getElementById("r-total").textContent:"0";
+  const monto=parseFloat(totalStr.replace(/[^0-9.]/g,""))||0;
+  return Math.round(monto*5);
+}
 function actualizarPtsPreview(){
   const inp=document.getElementById("ref-codigo-input");
   const prev=document.getElementById("ref-pts-preview");
